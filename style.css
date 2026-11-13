@@ -1,0 +1,203 @@
+/* ---------- Paleta e medidas (edite aqui) ---------- */
+:root {
+  --white: #fff;
+  --mint-50: #f4fbf7;
+  --mint-100: #e3f6ec;
+  --mint-200: #c6ecd6;
+  --green-300: #9adfb8;
+  --green-400: #5cc58b;
+  --green-600: #2f9e6a;
+  --green-800: #1f6b4a;
+  --sand: #eef7dc;
+  --sand-h: 200px;
+  --font: "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12Q30-2 60 12T120 12V24H0Z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  font-family: var(--font);
+  color: var(--green-800);
+  background: var(--mint-50);
+}
+
+/* ---------- Banner ---------- */
+.banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  container-type: inline-size;
+  width: min(100%, 1200px);
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 28px;
+  background: linear-gradient(#fff 0%, var(--mint-100) 34%, var(--mint-200) 46%);
+  box-shadow: 0 12px 40px rgba(47, 158, 106, .18);
+}
+
+/* ---------- Céu ---------- */
+.sky { position: absolute; inset: 0; z-index: 0; }
+
+.sun {
+  position: absolute; top: -70px; right: 8%;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 32%, rgba(255, 255, 255, 0) 70%);
+}
+
+.cloud {
+  position: absolute; left: 0; top: var(--y);
+  width: var(--w); height: calc(var(--w) * .3);
+  background: #fff; border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(47, 158, 106, .08);
+  animation: drift var(--t) linear infinite;
+  animation-delay: var(--d);
+  will-change: transform;
+}
+.cloud::before, .cloud::after {
+  content: ""; position: absolute; background: #fff; border-radius: 50%;
+}
+.cloud::before { width: 40%; height: 150%; left: 16%; bottom: 30%; }
+.cloud::after  { width: 30%; height: 120%; left: 48%; bottom: 30%; }
+
+.token {
+  position: absolute; left: var(--x); top: var(--y);
+  font-size: clamp(14px, 2vw, 22px); font-weight: 600;
+  color: var(--green-400); opacity: .55;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+
+/* ---------- Mar ---------- */
+.sea {
+  position: absolute; inset: 46% 0 0; z-index: 1;
+  background: linear-gradient(#bdebd0, #82d2a8);
+}
+.wave {
+  position: absolute; left: 0; width: 200%; height: 26px;
+  background: var(--wave) repeat-x;
+  background-size: 12.5% 100%;
+  animation: wave 10s linear infinite;
+  will-change: transform;
+}
+.wave--1 { top: -13px; opacity: .8; }
+.wave--2 { top: 30%; opacity: .35; animation-duration: 7s; animation-direction: reverse; }
+.wave--3 { top: 62%; opacity: .22; animation-duration: 12s; }
+
+/* ---------- Palmeiras e areia ---------- */
+.palm {
+  position: absolute; z-index: 2;
+  bottom: calc(var(--sand-h) - 55px);
+  width: clamp(70px, 11vw, 120px);
+  aspect-ratio: 120 / 200;
+  transform-origin: 50% 100%;
+  animation: sway 6s ease-in-out infinite alternate;
+}
+.palm--l { left: 2%; }
+.palm--r { right: 2%; scale: -1 1; animation-delay: -3s; }
+.l1 { fill: var(--green-400); }
+.l2 { fill: var(--green-600); }
+
+.sand {
+  position: absolute; inset: auto 0 0; z-index: 3;
+  height: var(--sand-h);
+  background: linear-gradient(var(--sand), #f7fbec);
+  border-radius: 50% 50% 0 0 / 40px 40px 0 0;
+}
+
+/* ---------- Avião e rastro ---------- */
+.plane {
+  position: absolute; left: 0; top: 0; z-index: 4;
+  width: clamp(84px, 11vw, 116px);
+  will-change: transform;
+}
+.plane svg { display: block; width: 100%; height: auto; }
+.prop {
+  transform-box: fill-box; transform-origin: center;
+  animation: spin .12s linear infinite alternate;
+}
+
+#trail { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.puff {
+  position: absolute; left: 0; top: 0; opacity: 0;
+  width: 12px; height: 12px; margin: -6px 0 0 -6px;
+  border-radius: 50%; background: #fff; border: 2px solid var(--green-300);
+}
+.puff.code {
+  width: auto; height: auto; margin: -9px 0 0 -10px;
+  border: 0; border-radius: 0; background: none;
+  font-size: 13px; font-weight: 600; color: var(--green-600);
+}
+
+/* ---------- Texto de apresentação ---------- */
+.intro {
+  position: relative; z-index: 5;
+  max-width: 640px;
+  padding: 36px clamp(20px, 5vw, 56px) 0;
+}
+.intro h1 { font-size: clamp(30px, 5.4vw, 54px); font-weight: 600; line-height: 1.05; }
+.intro p  { margin-top: 10px; font-size: clamp(15px, 2vw, 19px); color: var(--green-600); }
+
+/* ---------- Habilidades ---------- */
+.skills {
+  position: relative; z-index: 5;
+  width: 100%;
+  padding: 0 clamp(16px, 4vw, 48px) 26px;
+}
+.skills h2 {
+  margin-bottom: 12px; text-align: center;
+  font-size: 16px; font-weight: 500; color: var(--green-600);
+}
+.cards {
+  list-style: none; padding: 0; margin: 0 auto; max-width: 780px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+}
+.card {
+  flex: 0 0 130px;
+  display: grid; justify-items: center; gap: 6px;
+  padding: 14px 8px 12px;
+  font-size: 15px; font-weight: 500;
+  background: rgba(255, 255, 255, .88);
+  border: 1.5px solid var(--mint-200);
+  border-radius: 20px;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.card svg { width: 40px; height: 40px; transition: transform .35s; }
+
+.s  { fill: none; stroke: var(--green-600); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.f1 { fill: var(--green-400); }
+.f2 { fill: var(--green-600); }
+.w  { fill: #fff; }
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-6px) rotate(-1.5deg);
+    border-color: var(--green-400);
+    box-shadow: 0 10px 20px rgba(47, 158, 106, .22);
+  }
+  .card:hover svg { transform: scale(1.15) rotate(8deg); }
+}
+
+/* ---------- Animações ---------- */
+@keyframes drift { from { transform: translateX(-30cqw); } to { transform: translateX(110cqw); } }
+@keyframes wave  { to { transform: translateX(-50%); } }
+@keyframes float { 50% { transform: translateY(-8px); } }
+@keyframes sway  { from { transform: rotate(-1.5deg); } to { transform: rotate(1.5deg); } }
+@keyframes spin  { to { transform: scaleY(.3); } }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 640px) {
+  :root { --sand-h: 280px; }
+  .banner { min-height: 700px; }
+  .card { flex: 0 0 calc((100% - 24px) / 3); font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

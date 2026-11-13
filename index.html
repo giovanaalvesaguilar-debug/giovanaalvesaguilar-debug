@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banner do meu perfil</title>
+  <meta name="description" content="Banner animado de perfil: praia, avião e minhas tecnologias.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Símbolos reutilizáveis (palmeira) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="leaf" d="M0 0 Q26 -32 58 -16 Q28 -10 0 0Z"/>
+      <symbol id="palm" viewBox="0 0 120 200">
+        <path d="M60 200 Q46 140 64 72" fill="none" stroke="#8fbf9f" stroke-width="9" stroke-linecap="round"/>
+        <g transform="translate(64 72)">
+          <use href="#leaf" class="l1" transform="rotate(-35)"/>
+          <use href="#leaf" class="l2" transform="rotate(10)"/>
+          <use href="#leaf" class="l1" transform="rotate(52)"/>
+          <use href="#leaf" class="l2" transform="scale(-1 1) rotate(-35)"/>
+          <use href="#leaf" class="l1" transform="scale(-1 1) rotate(10)"/>
+          <use href="#leaf" class="l2" transform="scale(-1 1) rotate(52)"/>
+          <circle cx="-4" cy="6" r="5" fill="#1f6b4a"/><circle cx="6" cy="8" r="5" fill="#2f9e6a"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="banner" aria-label="Banner do perfil">
+
+    <!-- Céu -->
+    <div class="sky" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="cloud" style="--y:8%;  --w:150px; --t:70s; --d:-20s"></div>
+      <div class="cloud" style="--y:22%; --w:110px; --t:95s; --d:-65s"></div>
+      <div class="cloud" style="--y:36%; --w:130px; --t:80s; --d:-40s"></div>
+      <span class="token" style="--x:56%; --y:12%; --d:0s">&lt;/&gt;</span>
+      <span class="token" style="--x:80%; --y:26%; --d:-2s">{ }</span>
+      <span class="token" style="--x:38%; --y:40%; --d:-4s">=&gt;</span>
+    </div>
+
+    <!-- Mar, palmeiras e areia -->
+    <div class="sea" aria-hidden="true">
+      <div class="wave wave--1"></div>
+      <div class="wave wave--2"></div>
+      <div class="wave wave--3"></div>
+    </div>
+    <svg class="palm palm--l" aria-hidden="true"><use href="#palm"/></svg>
+    <svg class="palm palm--r" aria-hidden="true"><use href="#palm"/></svg>
+    <div class="sand" aria-hidden="true"></div>
+
+    <!-- Avião e rastro (movidos por script.js) -->
+    <div id="trail" aria-hidden="true"></div>
+    <div id="plane" class="plane" aria-hidden="true">
+      <svg viewBox="0 0 124 76">
+        <path d="M20 32 L6 12 Q3 7 10 8 L34 26Z" fill="#5cc58b"/>
+        <path d="M54 32 L42 8 Q40 4 45 5 L70 29Z" fill="#9adfb8"/>
+        <ellipse cx="64" cy="38" rx="44" ry="18" fill="#fff" stroke="#c6ecd6" stroke-width="2"/>
+        <path d="M26 44 Q62 54 104 44" fill="none" stroke="#5cc58b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 42 L44 66 Q41 71 47 70 L78 49Z" fill="#2f9e6a"/>
+        <circle cx="82" cy="34" r="3" fill="#1f6b4a"/><circle cx="94" cy="34" r="3" fill="#1f6b4a"/>
+        <circle cx="83" cy="33" r="1" fill="#fff"/><circle cx="95" cy="33" r="1" fill="#fff"/>
+        <ellipse cx="77" cy="41" rx="4" ry="2.4" fill="#9adfb8" opacity=".7"/>
+        <ellipse cx="99" cy="41" rx="4" ry="2.4" fill="#9adfb8" opacity=".7"/>
+        <path d="M85 40 Q88 43.5 91 40" fill="none" stroke="#1f6b4a" stroke-width="2" stroke-linecap="round"/>
+        <ellipse class="prop" cx="110" cy="38" rx="3" ry="10" fill="#2f9e6a"/>
+      </svg>
+    </div>
+
+    <!-- EDITE AQUI: seu nome e frase -->
+    <section class="intro">
+      <h1>Olá, eu sou [seu nome]!</h1>
+      <p>Desenvolvedora que escreve código e coleciona destinos.</p>
+    </section>
+
+    <!-- EDITE AQUI: habilidades (apenas as cinco) -->
+    <section class="skills">
+      <h2>Tecnologias que eu uso</h2>
+      <ul class="cards">
+        <li class="card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path class="s" d="M14 12 L5 20 L14 28 M26 12 L35 20 L26 28 M23 9 L17 31"/></svg>
+          HTML
+        </li>
+        <li class="card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path class="s" d="M15 8 Q10 8 10 13 V17 Q10 20 7 20 Q10 20 10 23 V27 Q10 32 15 32 M25 8 Q30 8 30 13 V17 Q30 20 33 20 Q30 20 30 23 V27 Q30 32 25 32"/><circle class="f1" cx="20" cy="20" r="2.6"/></svg>
+          CSS
+        </li>
+        <li class="card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><rect class="f1" x="6" y="5" width="19" height="19" rx="7"/><rect class="f2" x="15" y="16" width="19" height="19" rx="7"/><circle class="w" cx="13" cy="11" r="2"/><circle class="w" cx="27" cy="29" r="2"/></svg>
+          Python
+        </li>
+        <li class="card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path class="f1" d="M9 17 H27 V26 Q27 33 20 33 H16 Q9 33 9 26Z"/><path class="s" d="M27 20 H30 Q34 20 34 24 Q34 28 30 28 H27 M14 5 Q12 8 14 10 Q16 12 14 14 M20 5 Q18 8 20 10 Q22 12 20 14"/></svg>
+          Java
+        </li>
+        <li class="card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><rect class="f1" x="6" y="6" width="28" height="28" rx="9"/><text class="w" x="20" y="27" text-anchor="middle" font-size="15" font-weight="600">JS</text></svg>
+          JavaScript
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
